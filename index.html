@@ -140,6 +140,42 @@
 
     <div id="copyFeedback" class="copy-feedback"></div>
 
+    <!-- 광고 영역: 부정클릭 방지 적용 예시 -->
+    <div id="ad-container" style="position:relative;max-width:100%;margin:24px auto 0 auto;">
+      <!-- 구글 광고 코드 예시 (실제 광고 client/slot 값으로 교체) -->
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-xxxxxxxxxxxxxxxx"
+           data-ad-slot="yyyyyyyyyy"
+           data-ad-format="auto"></ins>
+      <div id="ad-blocker" style="display:none;position:absolute;top:0;left:0;width:100%;height:100%;z-index:10;background:rgba(255,255,255,0);"></div>
+    </div>
+    <div id="adWarning" style="display:none;position:fixed;top:30%;left:50%;transform:translate(-50%,-50%);background:rgba(0,0,0,0.85);color:#fff;padding:32px 24px;border-radius:12px;z-index:2000;font-size:1.1em;text-align:center;box-shadow:0 4px 24px rgba(0,0,0,0.2);">
+      <div style="font-weight:bold;font-size:1.2em;margin-bottom:12px;">광고 부정클릭 방지 안내</div>
+      <div>반복적인 광고 클릭은 제한됩니다.<br>지속적인 부정클릭 시 IP가 기록될 수 있습니다.<br>정상적인 이용을 부탁드립니다.</div>
+      <button onclick="document.getElementById('adWarning').style.display='none'" style="margin-top:18px;padding:8px 24px;background:#FF7F50;color:#fff;border:none;border-radius:6px;font-weight:bold;cursor:pointer;">확인</button>
+    </div>
+    <script>
+      // 부정클릭 방지 스크립트
+      const adContainer = document.getElementById('ad-container');
+      const adBlocker = document.getElementById('ad-blocker');
+      const adWarning = document.getElementById('adWarning');
+      let lastAdClick = 0;
+      adContainer.addEventListener('click', function(e) {
+        const now = Date.now();
+        if (now - lastAdClick < 10000) { // 10초 이내 재클릭 방지
+          adBlocker.style.display = 'block';
+          setTimeout(() => { adBlocker.style.display = 'none'; }, 10000);
+          adWarning.style.display = 'block';
+          e.preventDefault();
+          e.stopPropagation();
+          return false;
+        }
+        lastAdClick = now;
+        adBlocker.style.display = 'block';
+        setTimeout(() => { adBlocker.style.display = 'none'; }, 10000);
+      });
+    </script>
     <script>
         document.getElementById('currentYear').textContent = new Date().getFullYear();
         function copyToClipboard(text, type) {
