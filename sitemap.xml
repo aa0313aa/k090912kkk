@@ -1,15 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://aa0313aa.github.io/k090912kkk/</loc>
+    <loc>https://cardcashing.shop/</loc>
     <priority>1.0</priority>
     <changefreq>weekly</changefreq>
   </url>
-  <!-- 추가 페이지가 있다면 아래처럼 계속 추가하세요.
-  <url>
-    <loc>https://aa0313aa.github.io/k090912kkk/다른페이지.html</loc>
-    <priority>0.8</priority>
-    <changefreq>monthly</changefreq>
-  </url>
-  -->
 </urlset>
