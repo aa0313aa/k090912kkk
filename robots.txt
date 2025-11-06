@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://cardcashing.shop/sitemap.xml
+Sitemap: https://aa0313aa.github.io/k090912kkk/sitemap.xml
