@@ -1,5 +1,5 @@
-# GitHub Pages용 리다이렉션 및 404 처리
-ErrorDocument 404 /k090912kkk/index.html
+# cardcashing.shop용 리다이렉션 및 404 처리
+ErrorDocument 404 /404.html
 
 # URL 정규화
 RewriteEngine On
