@@ -51,16 +51,16 @@
 # SEO & Redirects
 RewriteEngine On
 
+## Redirect legacy board/query URLs (contain q=, bmode=, idx=) to the external board domain
+## This prevents Google from indexing internal query-strings that are served via redirects
+RewriteCond %{QUERY_STRING} (q=|bmode=|idx=) [NC]
+RewriteRule ^(.*)$ https://xn--90-vc7iv9i5p0bdii.store/ [R=301,L]
+
 ## Canonical redirect: force HTTPS + non-www in a single 301 to avoid redirect chains
 ## Redirect any request that is not https://cardcashing.shop to https://cardcashing.shop
 RewriteCond %{HTTP_HOST} !^cardcashing\.shop$ [NC,OR]
 RewriteCond %{HTTPS} off
 RewriteRule ^(.*)$ https://cardcashing.shop/$1 [L,R=301]
-
-## Redirect legacy board/query URLs (contain q=, bmode=, idx=) to the external board domain
-## This prevents Google from indexing internal query-strings that are served via redirects
-RewriteCond %{QUERY_STRING} (q=|bmode=|idx=) [NC]
-RewriteRule ^(.*)$ https://xn--90-vc7iv9i5p0bdii.store/ [R=301,L]
 
 # Error Documents
 ErrorDocument 404 /404.html
