@@ -1,0 +1,91 @@
+# Security Headers
+<IfModule mod_headers.c>
+    # XSS Protection
+    Header always set X-Content-Type-Options nosniff
+    Header always set X-Frame-Options DENY
+    Header always set X-XSS-Protection "1; mode=block"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    Header always set Permissions-Policy "geolocation=(), microphone=(), camera=()"
+    
+    # HSTS Security
+    Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+    
+    # Content Security Policy
+    Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://fonts.googleapis.com; style-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self';"
+</IfModule>
+
+# Performance & Caching
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType text/html "access plus 1 hour"
+    ExpiresByType text/css "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
+    ExpiresByType text/javascript "access plus 1 month"
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/jpg "access plus 1 year"
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/gif "access plus 1 year"
+    ExpiresByType image/svg+xml "access plus 1 year"
+    ExpiresByType image/webp "access plus 1 year"
+    ExpiresByType application/manifest+json "access plus 1 week"
+    ExpiresByType text/xml "access plus 1 week"
+</IfModule>
+
+# GZIP Compression
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/plain
+    AddOutputFilterByType DEFLATE text/html
+    AddOutputFilterByType DEFLATE text/xml
+    AddOutputFilterByType DEFLATE text/css
+    AddOutputFilterByType DEFLATE text/javascript
+    AddOutputFilterByType DEFLATE application/xml
+    AddOutputFilterByType DEFLATE application/xhtml+xml
+    AddOutputFilterByType DEFLATE application/rss+xml
+    AddOutputFilterByType DEFLATE application/javascript
+    AddOutputFilterByType DEFLATE application/x-javascript
+    AddOutputFilterByType DEFLATE application/json
+    AddOutputFilterByType DEFLATE application/manifest+json
+    AddOutputFilterByType DEFLATE image/svg+xml
+</IfModule>
+
+# SEO & Redirects
+RewriteEngine On
+
+## Redirect legacy board/query URLs (contain q=, bmode=, idx=) to the external board domain
+## This prevents Google from indexing internal query-strings that are served via redirects
+RewriteCond %{QUERY_STRING} (q=|bmode=|idx=) [NC]
+RewriteRule ^(.*)$ https://xn--90-vc7iv9i5p0bdii.store/ [R=301,L]
+
+## Canonical redirect: force HTTPS + non-www in a single 301 to avoid redirect chains
+## Redirect any request that is not https://cardcashing.shop to https://cardcashing.shop
+RewriteCond %{HTTP_HOST} !^cardcashing\.shop$ [NC,OR]
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://cardcashing.shop/$1 [L,R=301]
+
+# Error Documents
+ErrorDocument 404 /404.html
+ErrorDocument 403 /404.html
+ErrorDocument 500 /404.html
+
+## URL Redirects for old/extensionless pages -> point to canonical .html URLs
+RewriteRule ^home/?$ /home.html [L,R=301]
+RewriteRule ^sk6070/?$ https://xn--90-vc7iv9i5p0bdii.store/ [L,R=301]
+RewriteRule ^gbeovhsthdorrufwp/?$ /gbeovhsthdorrufwp/ [L,R=301]
+
+## Redirect extensionless Korean page paths to their .html equivalents (301)
+RewriteRule ^신용카드현금화/?$ /신용카드현금화.html [L,R=301]
+RewriteRule ^휴대폰소액결제/?$ /휴대폰소액결제.html [L,R=301]
+
+# Block bad bots
+<RequireAll>
+    Require all granted
+    Require not ip 1.2.3.4
+</RequireAll>
+
+# Prevent directory browsing
+Options -Indexes
+
+# Protect sensitive files
+<FilesMatch "^(\.htaccess|\.htpasswd|\.env|\.git)">
+    Require all denied
+</FilesMatch>

